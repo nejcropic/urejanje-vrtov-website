@@ -1,0 +1,76 @@
+@import "./colors.css";
+
+/* ===============================
+   ROOT VARIABLES
+================================= */
+:root {
+  --title-font: "Plus Jakarta Sans", Helvetica, Arial, sans-serif;
+  --body-font-size: 16px;
+  --title-font-weight: 500;
+  --h4-font-weight: 600;
+  --h5-font-weight: 600;
+  --h6-font-weight: 600;
+  --body-font: "Heebo", Helvetica, Arial, sans-serif;
+  --body-font-weight: "300";
+  --mainmenu-font: "Plus Jakarta Sans", Helvetica, Arial, sans-serif;
+  --mainmenu-font-size: 14px;
+  --mainmenu-font-weight: 500;
+  --mainmenu-text-transform: uppercase;
+}
+
+/* ===============================
+   RESET
+================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  background: var(--bg-dark-1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: var(--body-font);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+
+  background: var(--backgroundColor);
+  color: var(--textColor);
+  word-spacing: 0px;
+  line-height: 1.7em;
+}
+
+/* ===============================
+   TYPOGRAPHY
+================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+/* ===============================
+   LINKS
+================================= */
+a {
+  text-decoration: none;
+  color: inherit;
+}

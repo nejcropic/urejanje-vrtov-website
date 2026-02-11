@@ -1,0 +1,18 @@
+{
+  "home": {
+    "title": "Domov"
+  },
+  "nav": {
+    "home": "Domov",
+    "services": "Storitve",
+    "references": "Reference",
+    "about": "O nas",
+    "kontakt": "Kontakt"
+  },
+  "hero": {
+    "question": "Pošlj povpraševanje",
+    "big": "Celostna ureditev",
+    "big_2": " in okolice",
+    "big_text": "Urejeni, funkcionalni in estetsko dovršeni zunanji prostori – od ideje do brezhibne izvedbe."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "home": {
+    "title": "Home"
+  },
+
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  }
+}

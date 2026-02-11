@@ -1,0 +1,158 @@
+Odlično — glede na dejansko vsebino, ki jo imaš v dokumentih **O nas**  in **Storitve** , ti spodaj predlagam profesionalno, logično in SEO-optimizirano strukturo menija.
+
+Ne bomo delali “umetnih” kategorij, ampak bomo strukturirali točno to, kar dejansko ponujaš.
+
+---
+
+# ✅ PREDLAGANA STRUKTURA GLAVNEGA MENIJA
+
+## 1️⃣ Domov
+
+* Hero (celostno urejanje vrtov)
+* Ključne storitve (6 ikon)
+* Zakaj izbrati nas
+* Reference (slike)
+* CTA: Pošlji povpraševanje
+
+---
+
+## 2️⃣ Storitve  (dropdown)
+
+Storitve naj bodo razdeljene v **3 logične sklope**, da deluje profesionalno in ne kot “seznam brez reda”.
+
+---
+
+# 🌿 A) Urejanje vrta
+
+Podstrani:
+
+* Zasaditev
+* Travni tepih
+* Umetna trava
+* Visoke grede
+* Vzdrževanje
+
+To so mehkejše, “zelenjavne” storitve.
+
+---
+
+# 🚜 B) Zemeljska in pripravljalna dela
+
+Podstrani:
+
+* Mini bager
+* Izkop rastlin in korenin
+* Priprava terena
+* Mulčanje
+* Planiranje površin
+
+To je tehnični del.
+
+---
+
+# 🌳 C) Drevesa in obrezovanje
+
+Podstrani:
+
+* Obrezovanje drevja
+* Obrezovanje živih mej
+* Obrezovanje oljk
+* Višinski posek
+
+---
+
+# 💧 D) Namakalni sistemi
+
+Podstrani:
+
+* Avtomatsko namakanje
+* Kapljično namakanje
+* Servis sistema
+* Zimska priprava
+
+(To je lahko tudi samostojna glavna postavka, če želiš bolj poudariti.)
+
+---
+
+# 🏡 E) Ograje in terase
+
+Podstrani:
+
+* Ograjni sistemi
+* Terase
+
+To je gradbeni / konstrukcijski del.
+
+---
+
+# 3️⃣ Reference
+
+* Galerija projektov
+* Pred / po
+* Projekti po kategorijah
+
+---
+
+# 4️⃣ O nas
+
+(Uporabi tekst iz dokumenta )
+
+Struktura:
+
+* Kdo smo
+* Naš pristop
+* Zakaj izbrati nas
+* Fotografija ekipe
+
+---
+
+# 5️⃣ Kontakt
+
+* Kontaktni obrazec
+* Telefon
+* Lokacija
+* CTA
+
+---
+
+# 🎯 Če želiš bolj moderno in čisto strukturo (moja priporočena verzija)
+
+Če želiš manj podmenijev in bolj enostavno navigacijo:
+
+### Glavni meni:
+
+* Domov
+* Storitve
+* Reference
+* O nas
+* Kontakt
+
+Pod “Storitve” pa sekcije na eni strani z anchor linki.
+
+To je danes bolj moderno in boljše za UX.
+
+---
+
+# 🚀 Moja strokovna priporočila
+
+Ker si že oblikoval Hero slider (terasa, namakanje, travna ruša):
+
+👉 Najmočnejši komercialni sklopi so:
+
+* Terase
+* Namakalni sistemi
+* Travna ruša
+* Ograje
+
+Te bi jaz posebej izpostavil.
+
+---
+
+Če želiš, ti lahko zdaj:
+
+* naredim optimalno SEO strukturo URL-jev
+* predlagam ikonice za vsako kategorijo
+* naredim končno verzijo menija za React Navbar
+* ali naredim “premium” verzijo strukture za višji cenovni rang
+
+Kako želiš pozicionirati podjetje — bolj premium ali bolj cenovno dostopno?

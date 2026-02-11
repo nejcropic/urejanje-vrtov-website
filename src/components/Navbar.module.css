@@ -1,0 +1,412 @@
+/* =====================================================
+   LAYER SYSTEM
+===================================================== */
+.header {
+  z-index: 2000;
+}
+.mobileMenu {
+  z-index: 1500;
+}
+.backdrop {
+  z-index: 1400;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: white;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.headerCollapsed {
+  transform: translateY(-40px);
+}
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+.topbar {
+  height: 40px;
+  background: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10%;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.topbarHidden {
+  transform: translateY(-100%);
+}
+
+.topLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.topRight img {
+  height: 22px;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.topRight img:hover {
+  opacity: 1;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+.nav {
+  height: 60px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 20px 10%;
+  background: transparent;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.3s ease;
+}
+
+.navScrolled {
+  background: var(--primary-color);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* LEFT */
+.left img {
+  height: 3rem;
+}
+
+/* CENTER */
+.center {
+  display: flex;
+  justify-content: center;
+  gap: 2.2rem;
+  text-transform: uppercase;
+  font-weight: var(--mainmenu-font-weight);
+  font-size: var(--mainmenu-font-size);
+}
+
+/* NAV LINKS */
+.navLink {
+  position: relative;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* RIGHT */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* =====================================================
+   LANGUAGE DROPDOWN
+===================================================== */
+.langDropdown {
+  position: relative;
+}
+
+.langCurrent {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: white;
+}
+
+.langMenu {
+  position: absolute;
+  top: 130%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.langItem {
+  background: none;
+  border: none;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background 0.2s ease;
+}
+
+.langItem:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* =====================================================
+   DROPDOWN MENU (DESKTOP)
+===================================================== */
+.dropdownWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownMenuSimple {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeDown 0.2s ease forwards;
+}
+
+.dropdownMenuSimple a {
+  color: #111;
+  font-weight: 500;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.dropdownMenuSimple a:hover {
+  transform: translateX(4px);
+  color: var(--primary-color);
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* =====================================================
+   HAMBURGER
+===================================================== */
+.hamburger {
+  display: none;
+  width: 32px;
+  height: 24px;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.2s ease;
+}
+
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* =====================================================
+   BACKDROP
+===================================================== */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+.mobileMenu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: var(--primary-color);
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+
+  overflow-y: auto;
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Top level links */
+.mobileLinks > a,
+.mobileAccordionHeader {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 15px;
+}
+
+/* Accordion header */
+.mobileAccordionHeader {
+  background: none;
+  border: none;
+  color: inherit;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+/* Chevron */
+.mobileChevron {
+  transition: transform 0.25s ease;
+}
+
+.mobileChevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Submenu */
+.mobileAccordionContent {
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.mobileAccordionContentOpen {
+  max-height: 500px;
+}
+
+.mobileAccordionContent a {
+  padding: 18px 0 18px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 14px;
+  text-transform: none;
+  opacity: 0.9;
+}
+
+/* =====================================================
+   MOBILE FOOTER
+===================================================== */
+
+.mobileFooter {
+  margin-top: auto;
+  padding: 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.mobilePhone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  text-transform: none;
+  opacity: 0.9;
+}
+
+.mobileSocials {
+  display: flex;
+  gap: 18px;
+}
+
+.mobileSocials img {
+  height: 35px;
+  opacity: 0.85;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobileSocials img:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 768px) {
+  .center {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav {
+    padding: 0 20px;
+    background: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .right {
+    margin-left: auto;
+  }
+
+  .topbar {
+    display: none;
+  }
+}
