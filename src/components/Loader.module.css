@@ -1,0 +1,42 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #1f2a1b, #2f3f2c, #1b2417);
+
+  animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.inner {
+  text-align: center;
+}
+
+.logo {
+  width: 140px;
+  margin-bottom: 30px;
+  filter: brightness(0) invert(1);
+}
+
+.line {
+  width: 120px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  transform-origin: left;
+}
