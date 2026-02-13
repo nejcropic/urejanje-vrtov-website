@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { animate } from "motion";
 import { useEffect, useRef, useState } from "react";
 import styles from "./Navbar.module.css";
-import logo from "../assets/LOGO.jpeg";
+import logo from "../assets/logo.png";
+import logo_white from "../assets/logo_white.png";
 import tiktok from "../assets/tik-tok.png";
 import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
@@ -39,12 +40,12 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       const current = window.scrollY;
-
+      const x = 100;
       // navbar background trigger
-      setScrolled(current > 50);
+      setScrolled(current > x - 60);
 
       // hide topbar when scrolling down
-      if (current > lastScroll.current && current > 100) {
+      if (current > lastScroll.current && current > x) {
         setTopbarHidden(true);
       } else {
         setTopbarHidden(false);
@@ -68,7 +69,7 @@ export default function Navbar() {
 
         <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ""}`}>
           <div className={styles.left}>
-            <img src={logo} alt="Logo" />
+            <img src={scrolled ? logo_white : logo} alt="Logo" />
           </div>
 
           <div className={styles.center}>
