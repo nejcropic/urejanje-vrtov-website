@@ -32,11 +32,12 @@
 ========================= */
 
 .nav {
+  position: relative;
   height: 86px;
   padding: 0 8%;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .left {
@@ -49,19 +50,16 @@
   align-items: center;
 }
 
-.logo {
-  height: 3.3rem;
-  width: auto;
-}
-
 /* =========================
    Center (desktop)
 ========================= */
 
 .center {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 2.8rem;
 
@@ -171,6 +169,31 @@
   opacity: 1;
 }
 
+.logo {
+  height: 3.3rem;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 2px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 /* =========================
    Right
 ========================= */
@@ -215,16 +238,29 @@
 .langDropdown {
   position: relative;
 }
-
 .langCurrent {
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(14px);
 
   border-radius: 999px;
-  padding: 8px 10px;
-  font-size: 16px;
+  padding: 0;
+}
+
+.langCurrent img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .langMenu {
@@ -245,16 +281,25 @@
 
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
 }
-
 .langItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
   cursor: pointer;
   background: transparent;
   border: none;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px 10px;
   border-radius: 10px;
   transition: background 0.2s ease;
+}
+
+.langItem img {
+  width: 25px;
+  height: px;
+  border-radius: 50%;
 }
 
 .langItem:hover {
@@ -319,12 +364,33 @@
   right: 0;
 
   z-index: 2600;
+  height: 100vh;
 
-  padding: 110px 24px 24px;
+  padding: 90px 24px 110px 24px;
   background: rgba(14, 20, 14, 0.92);
   backdrop-filter: blur(18px);
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.mobileTopSocials {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 0px;
+}
+
+.mobileTopSocials img {
+  height: 38px;
+  border-radius: 50%;
+  opacity: 0.9;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.mobileTopSocials img:hover {
+  opacity: 1;
+  transform: translateY(-3px);
 }
 
 .mobileLinks {
@@ -344,12 +410,15 @@
   padding: 12px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .mobileSectionLabel {
-  margin-top: 10px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  opacity: 0.65;
+  margin-top: 18px;
+  margin-bottom: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+
+  opacity: 0.55;
   color: white;
 }
 
@@ -400,6 +469,42 @@
   opacity: 0.9;
 }
 
+/* Social media */
+/* Social media - desktop */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  opacity: 0.85;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.socials a:hover img {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
 /* =========================
    Responsive
 ========================= */
@@ -428,5 +533,22 @@
   }
   .right {
     margin-left: auto;
+  }
+  .socials {
+    display: none;
+  }
+  .langCurrent {
+    width: 40px;
+    height: 40px;
+  }
+
+  .langCurrent img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
   }
 }

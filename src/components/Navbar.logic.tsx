@@ -2,10 +2,14 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 /* ---------- CONSTANTS ---------- */
+import siFlag from "../assets/si.webp";
+import enFlag from "../assets/en.webp";
+import itFlag from "../assets/it.webp";
+
 export const FLAGS = {
-  si: "🇸🇮",
-  en: "🇬🇧",
-  it: "🇮🇹",
+  si: siFlag,
+  en: enFlag,
+  it: itFlag,
 } as const;
 
 export type LangCode = keyof typeof FLAGS;

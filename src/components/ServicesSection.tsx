@@ -70,7 +70,7 @@ const item = {
 export default function ServicesSection() {
   return (
     <section className={styles.services}>
-      <div className={styles.header}>
+      <div className={styles.servicesHeader}>
         <h2>Celostne rešitve za urejanje zunanjih prostorov</h2>
         <p>
           Od idejne zasnove do dovršene izvedbe – ustvarjamo trajne,

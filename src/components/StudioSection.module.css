@@ -1,8 +1,18 @@
 .studio {
-  padding: 180px 20px;
+  padding: 130px 20px;
   background: #eef0ea;
   position: relative;
   overflow: hidden;
+}
+
+.grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  transform: translateZ(0);
 }
 
 .wrapper {
@@ -15,7 +25,6 @@
 }
 
 /* IMAGES */
-
 .imageLeft,
 .imageRight {
   height: 600px;
@@ -23,6 +32,18 @@
   overflow: hidden;
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
   transition: transform 0.6s ease;
+  will-change: transform;
+  transform-origin: center;
+  perspective: 900px; /* helps with 3D feel */
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1.2s ease;
+  will-change: transform;
 }
 
 .imageLeft img,
@@ -34,8 +55,8 @@
   transition: transform 1.2s ease;
 }
 
-.imageLeft:hover img,
-.imageRight:hover video {
+.imageLeft:hover .media,
+.imageRight:hover .media {
   transform: scale(1.05);
 }
 
@@ -70,7 +91,6 @@
 
 .content h2 span {
   font-weight: 300;
-  opacity: 0.6;
 }
 
 .line {
@@ -90,7 +110,6 @@
 }
 
 /* BUTTON */
-
 .button {
   display: inline-block;
   padding: 16px 42px;
@@ -101,18 +120,72 @@
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: all 0.4s ease;
+  transition:
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+  will-change: transform;
 }
 
 .button:hover {
   background: #2d3a26;
-  transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.typing {
+  display: inline-block;
+  min-height: 1.2em;
+  white-space: nowrap;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 6px;
+  background: currentColor;
+  vertical-align: middle;
+  border-radius: 2px;
+  color: grey;
+  box-shadow: 0 0 6px rgba(62, 82, 53, 0.4);
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #3e5235, #7b8d63, #3e5235);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 3.5s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.wordWrapper {
+  display: inline-block;
+}
+
+.word {
+  display: inline-block;
+  font-weight: 300;
+  opacity: 0.6;
 }
 
 /* RESPONSIVE */
 
 @media (max-width: 1100px) {
+  .studio {
+    padding: 90px 20px;
+  }
   .wrapper {
     grid-template-columns: 1fr;
     gap: 70px;

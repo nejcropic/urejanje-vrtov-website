@@ -4,32 +4,43 @@ import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 
 export default function RootLayout() {
-  const [loading, setLoading] = useState(true);
+  const [mediaReady, setMediaReady] = useState(false);
+  const [minTimePassed, setMinTimePassed] = useState(false);
 
+  // Prevent scroll during intro
   useEffect(() => {
-    const handleLoad = () => {
-      setTimeout(() => {
-        setLoading(false);
-        document.body.classList.remove("no-scroll");
-      }, 1400); // longer intro timing
-    };
-
     document.body.classList.add("no-scroll");
 
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
-    }
+    const timer = setTimeout(() => {
+      setMinTimePassed(true);
+    }, 800); // professional intro timing
+
+    return () => clearTimeout(timer);
   }, []);
+
+  // Failsafe: never block more than 3s
+  useEffect(() => {
+    const failsafe = setTimeout(() => {
+      setMediaReady(true);
+    }, 3000);
+
+    return () => clearTimeout(failsafe);
+  }, []);
+
+  const loading = !(mediaReady && minTimePassed);
+
+  useEffect(() => {
+    if (!loading) {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [loading]);
 
   return (
     <>
       <div className={`page-wrapper ${loading ? "page-loading" : ""}`}>
         <Navbar />
         <main>
-          <Outlet />
+          <Outlet context={{ setMediaReady }} />
         </main>
       </div>
 

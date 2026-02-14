@@ -25,13 +25,12 @@ import {
 type NavItem = { to: string; label: string; key: string };
 
 function routeBg(path: string) {
-  // Smooth morphing bg color based on route
   if (path.startsWith("/services")) return "rgba(20, 40, 26, 0.72)";
   if (path.startsWith("/references") || path.startsWith("/projekti"))
     return "rgba(18, 34, 28, 0.72)";
   if (path.startsWith("/about")) return "rgba(22, 36, 22, 0.72)";
   if (path.startsWith("/contact")) return "rgba(16, 28, 18, 0.78)";
-  return "rgba(12, 20, 12, 0.0)"; // home top = transparent glass only when scrolled
+  return "rgba(12, 20, 12, 0.0)";
 }
 
 export default function Navbar() {
@@ -41,7 +40,7 @@ export default function Navbar() {
   const items: NavItem[] = useMemo(
     () => [
       { to: "/", label: t("nav.home"), key: "home" },
-      { to: "/services", label: t("nav.services"), key: "services" }, // anchor entry for dropdown
+      { to: "/services", label: t("nav.services"), key: "services" },
       { to: "/references", label: t("nav.references"), key: "references" },
       { to: "/about", label: t("nav.about"), key: "about" },
       { to: "/contact", label: t("nav.kontakt"), key: "contact" },
@@ -55,15 +54,21 @@ export default function Navbar() {
 
   useDisableBodyScroll(menuOpen);
 
-  // Scroll direction hide/reveal
+  useEffect(() => {
+    if (menuOpen) setHidden(false);
+  }, [menuOpen]);
+
   useEffect(() => {
     let lastY = window.scrollY;
 
     const onScroll = () => {
+      if (menuOpen) return;
+
       const y = window.scrollY;
       setScrolled(y > 40);
 
       const goingDown = y > lastY;
+
       if (goingDown && y > 140) setHidden(true);
       if (!goingDown) setHidden(false);
 
@@ -72,18 +77,22 @@ export default function Navbar() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [menuOpen]);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  // ===== Active indicator measurement =====
+  const bg = routeBg(location.pathname);
+
   const centerRef = useRef<HTMLDivElement | null>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
-  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+  const [indicator, setIndicator] = useState({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
 
   const activeKey = useMemo(() => {
     const p = location.pathname;
@@ -104,42 +113,18 @@ export default function Navbar() {
 
       const wrapRect = wrap.getBoundingClientRect();
       const elRect = el.getBoundingClientRect();
-      const left = elRect.left - wrapRect.left;
-      const width = elRect.width;
 
-      setIndicator({ left, width, opacity: 1 });
+      setIndicator({
+        left: elRect.left - wrapRect.left,
+        width: elRect.width,
+        opacity: 1,
+      });
     };
 
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
-  }, [activeKey, items.length]);
-
-  // ===== Cursor expansion blob (desktop only via CSS media) =====
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  const cursorOpacity = useMotionValue(0);
-
-  const cursorXSpring = useSpring(cursorX, { stiffness: 120, damping: 25 });
-  const cursorYSpring = useSpring(cursorY, { stiffness: 120, damping: 25 });
-  const cursorOpacitySpring = useSpring(cursorOpacity, {
-    stiffness: 120,
-    damping: 25,
-  });
-
-  const onCenterMove = (e: React.MouseEvent) => {
-    const wrap = centerRef.current;
-    if (!wrap) return;
-    const r = wrap.getBoundingClientRect();
-    cursorX.set(e.clientX - r.left);
-    cursorY.set(e.clientY - r.top);
-  };
-
-  const onCenterEnter = () => cursorOpacity.set(1);
-  const onCenterLeave = () => cursorOpacity.set(0);
-
-  // Route-based background color
-  const bg = routeBg(location.pathname);
+  }, [activeKey]);
 
   return (
     <>
@@ -151,38 +136,19 @@ export default function Navbar() {
         ].join(" ")}
         style={
           {
-            // When not scrolled, allow transparency on homepage.
-            // Once scrolled, we use bg (morph by route).
             "--navBg": scrolled ? bg : "rgba(0,0,0,0)",
           } as React.CSSProperties
         }
       >
         <nav className={styles.nav}>
           <div className={styles.left}>
-            <Link to="/" className={styles.logoLink} aria-label="Home">
+            <Link to="/" className={styles.logoLink}>
               <img src={logo} alt="Logo" className={styles.logo} />
             </Link>
           </div>
 
           {/* DESKTOP CENTER */}
-          <div
-            className={styles.center}
-            ref={centerRef}
-            onMouseMove={onCenterMove}
-            onMouseEnter={onCenterEnter}
-            onMouseLeave={onCenterLeave}
-          >
-            {/* Cursor blob */}
-            <motion.div
-              className={styles.cursorBlob}
-              style={{
-                x: cursorXSpring,
-                y: cursorYSpring,
-                opacity: cursorOpacitySpring,
-              }}
-            />
-
-            {/* Sliding active indicator */}
+          <div className={styles.center} ref={centerRef}>
             <motion.div
               className={styles.activeIndicator}
               animate={{
@@ -228,6 +194,7 @@ export default function Navbar() {
             />
           </div>
 
+          {/* RIGHT SIDE */}
           <div className={styles.right}>
             <a href="tel:040000000" className={styles.call}>
               <Phone size={16} />
@@ -236,11 +203,36 @@ export default function Navbar() {
 
             <LanguageDropdown />
 
+            {/* DESKTOP SOCIALS */}
+            <div className={styles.socials}>
+              <a
+                href="https://www.tiktok.com/@urejanjevrtov"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={tiktok} alt="TikTok" />
+              </a>
+              <a
+                href="https://www.instagram.com/urejanje_vrtov"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={instagram} alt="Instagram" />
+              </a>
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={facebook} alt="Facebook" />
+              </a>
+            </div>
+
             <button
-              className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
+              className={`${styles.hamburger} ${
+                menuOpen ? styles.hamburgerOpen : ""
+              }`}
               onClick={() => setMenuOpen((o) => !o)}
-              aria-label="Open menu"
-              aria-expanded={menuOpen}
             >
               <span />
               <span />
@@ -267,8 +259,33 @@ export default function Navbar() {
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.3 }}
             >
+              {/* SOCIALS AT TOP */}
+              <div className={styles.mobileTopSocials}>
+                <a
+                  href="https://www.tiktok.com/@urejanjevrtov"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={tiktok} alt="TikTok" />
+                </a>
+                <a
+                  href="https://www.instagram.com/urejanje_vrtov"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={instagram} alt="Instagram" />
+                </a>
+                <a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={facebook} alt="Facebook" />
+                </a>
+              </div>
+
               <div className={styles.mobileLinks}>
                 <Link to="/" onClick={() => setMenuOpen(false)}>
                   {t("nav.home")}
@@ -277,6 +294,7 @@ export default function Navbar() {
                 <div className={styles.mobileSectionLabel}>
                   {t("nav.services")}
                 </div>
+
                 <div className={styles.mobileSubLinks}>
                   <Link
                     to="/services/urejanje-vrta"
@@ -320,37 +338,6 @@ export default function Navbar() {
                   {t("nav.kontakt")}
                 </Link>
               </div>
-
-              <div className={styles.mobileFooter}>
-                <a href="tel:040000000" className={styles.mobilePhone}>
-                  <Phone size={16} />
-                  <span>040-000-000</span>
-                </a>
-
-                <div className={styles.mobileSocials}>
-                  <a
-                    href="https://www.tiktok.com/@urejanjevrtov?_r=1&_t=ZN-93oPBUW7dLS"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img src={tiktok} alt="TikTok" />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/urejanje_vrtov?igsh=MWY5MzQwcGo1Mm9tNw=="
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img src={instagram} alt="Instagram" />
-                  </a>
-                  <a
-                    href="https://www.facebook.com/share/1Bq9TnAdoo/?mibextid=wwXIfr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img src={facebook} alt="Facebook" />
-                  </a>
-                </div>
-              </div>
             </motion.aside>
           </>
         )}
@@ -359,9 +346,6 @@ export default function Navbar() {
   );
 }
 
-/* =========================
-   Desktop Nav Link (Magnetic)
-========================= */
 function MagneticNavLink({
   to,
   label,
@@ -406,9 +390,6 @@ function MagneticNavLink({
   );
 }
 
-/* =========================
-   Services Dropdown (Desktop)
-========================= */
 function ServicesDropdown({
   label,
   active,
@@ -419,22 +400,6 @@ function ServicesDropdown({
   setRef: (el: HTMLAnchorElement | null) => void;
 }) {
   const [open, setOpen] = useState(false);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 180, damping: 18 });
-  const sy = useSpring(y, { stiffness: 180, damping: 18 });
-
-  const onMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    const dx = e.clientX - (r.left + r.width / 2);
-    const dy = e.clientY - (r.top + r.height / 2);
-    x.set(dx * 0.08);
-    y.set(dy * 0.12);
-  };
-  const onLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
 
   return (
     <div
@@ -442,26 +407,24 @@ function ServicesDropdown({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <motion.div style={{ x: sx, y: sy }} className={styles.navItemWrap}>
+      <div className={styles.navItemWrap}>
         <Link
           to="/services"
           ref={setRef}
           className={`${styles.navLink} ${active ? styles.navLinkActive : ""}`}
-          onMouseMove={onMove}
-          onMouseLeave={onLeave}
         >
           {label}
         </Link>
-      </motion.div>
+      </div>
 
       <AnimatePresence>
         {open && (
           <motion.div
             className={styles.dropdownMenu}
-            initial={{ opacity: 0, y: -8, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -8, filter: "blur(6px)" }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22 }}
           >
             <Link to="/services/urejanje-vrta">Urejanje vrta</Link>
             <Link to="/services/zemeljska-dela">Zemeljska dela</Link>
@@ -476,8 +439,9 @@ function ServicesDropdown({
 }
 
 /* =========================
-   Language Dropdown
+   Language Dropdown (UPDATED FOR IMAGE FLAGS)
 ========================= */
+
 function LanguageDropdown() {
   const { current, change } = useLanguage();
   const [open, setOpen] = useState(false);
@@ -490,22 +454,17 @@ function LanguageDropdown() {
 
   return (
     <div className={styles.langDropdown} onClick={(e) => e.stopPropagation()}>
-      <button
-        className={styles.langCurrent}
-        onClick={() => setOpen((o) => !o)}
-        aria-label="Language"
-      >
-        {FLAGS[current]}
+      <button className={styles.langCurrent} onClick={() => setOpen((o) => !o)}>
+        <img src={FLAGS[current]} alt={current} />
       </button>
 
       <AnimatePresence>
         {open && (
           <motion.div
             className={styles.langMenu}
-            initial={{ opacity: 0, y: -6, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -6, filter: "blur(6px)" }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
           >
             {(Object.keys(FLAGS) as LangCode[]).map((code) => (
               <button
@@ -516,7 +475,7 @@ function LanguageDropdown() {
                   setOpen(false);
                 }}
               >
-                {FLAGS[code]}
+                <img src={FLAGS[code]} alt={code} />
               </button>
             ))}
           </motion.div>
