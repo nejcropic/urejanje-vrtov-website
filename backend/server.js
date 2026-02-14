@@ -21,6 +21,9 @@ app.use(
     ],
   }),
 );
+app.get("/", (req, res) => {
+  res.send("Backend is running");
+});
 
 app.get("/health", (req, res) => res.send("ok"));
 
