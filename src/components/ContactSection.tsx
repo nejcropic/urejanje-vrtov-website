@@ -3,6 +3,10 @@ import { motion } from "motion/react";
 import { Clock, MapPin, Phone, Mail } from "lucide-react";
 import styles from "./ContactSection.module.css";
 import contactImg from "../assets/obrezovanje.webp";
+import emailjs from "@emailjs/browser";
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function ContactSection() {
   const [form, setForm] = useState({
@@ -37,27 +41,17 @@ export default function ContactSection() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY);
 
-      const data = await res.json();
-
-      if (data.success) {
-        setSuccess(true);
-        setForm({ name: "", email: "", phone: "", message: "" });
-      } else {
-        alert(data.error || "Error sending message.");
-      }
+      setSuccess(true);
+      setForm({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
-      alert("Server error.");
+      console.error(err);
+      alert("Failed to send message.");
     }
 
     setLoading(false);
   };
-
   return (
     <>
       <section className={styles.section}>
