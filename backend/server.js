@@ -39,7 +39,19 @@ app.post("/api/contact", async (req, res) => {
       return res.status(400).json({ error: "Invalid email." });
     }
 
-    console.log("Incoming contact:", req.body);
+    await transporter.sendMail({
+      from: `"Website Contact" <${process.env.SMTP_USER}>`,
+      to: process.env.RECEIVER_EMAIL,
+      subject: `New message from ${name}`,
+      html: `
+        <h3>New Contact Message</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || "-"}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+    });
 
     res.json({ success: true });
   } catch (err) {
