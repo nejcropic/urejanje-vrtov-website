@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import styles from "./ServicesSection.module.css";
 
-import terasa from "../assets/terasa.jpg";
+import terasa from "../assets/terasa.webp";
 import trava from "../assets/trava.mp4";
 import namakalni_sistemi from "../assets/namakalni_video.mp4";
 import travna_rusa from "../assets/travna_rusa.mp4";
@@ -11,37 +11,31 @@ import obrezovanje from "../assets/obrezovanje.mp4";
 const services = [
   {
     title: "Terase in zunanje površine",
-    text: "Arhitekturno dovršeni zunanji ambienti z občutkom trajnosti in elegance.",
     media: terasa,
     type: "image",
   },
   {
     title: "Avtomatizirani namakalni sistemi",
-    text: "Diskretne in inteligentne rešitve za popolno hidracijo zelenih površin.",
     media: namakalni_sistemi,
     type: "video",
   },
   {
     title: "Trate in zelene strukture",
-    text: "Naravna ali umetna trata z brezhibno izvedbo in dolgoročno stabilnostjo.",
     media: trava,
     type: "video",
   },
   {
     title: "Krajinska ureditev in zasaditve",
-    text: "Celostno oblikovanje vrtov s poudarkom na kompoziciji in ravnovesju.",
     media: zasaditev,
     type: "video",
   },
   {
     title: "Priprava terena in zemeljska dela",
-    text: "Natančna izvedba temeljev vsakega vrhunsko urejenega prostora.",
     media: travna_rusa,
     type: "video",
   },
   {
     title: "Strokovno vzdrževanje in obrezovanje",
-    text: "Kontinuirana skrb za zdravje, strukturo in estetsko vrednost vrta.",
     media: obrezovanje,
     type: "video",
   },
@@ -57,12 +51,17 @@ const container = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: {
+    opacity: 0,
+    y: 60,
+    scale: 0.96,
+  },
   show: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.8,
+      duration: 1,
       ease: [0.22, 1, 0.36, 1],
     },
   },
@@ -92,33 +91,60 @@ export default function ServicesSection() {
             href="/storitve"
             className={styles.card}
             variants={item}
+            whileHover={{ y: -10 }}
           >
-            <div className={styles.mediaWrapper}>
+            {/* MEDIA WITH IDLE BREATHING EFFECT */}
+            <motion.div
+              className={styles.mediaWrapper}
+              initial={{ scale: 1 }}
+              animate={{ scale: 1.04 }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+            >
               {service.type === "video" ? (
-                <video
+                <motion.video
                   src={service.media}
                   autoPlay
                   muted
                   loop
                   playsInline
                   className={styles.media}
+                  whileHover={{ scale: 1.1, y: -10 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               ) : (
-                <div
+                <motion.div
                   className={styles.media}
                   style={{ backgroundImage: `url(${service.media})` }}
+                  whileHover={{ scale: 1.1, y: -10 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               )}
-            </div>
+            </motion.div>
 
-            <div className={styles.overlay} />
+            {/* GRADIENT OVERLAY */}
+            <motion.div
+              className={styles.overlay}
+              initial={{ opacity: 0.9 }}
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            />
 
-            <div className={styles.content}>
-              <div className={styles.infoPanel}>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-                <span className={styles.link}>Preberi več →</span>
-              </div>
+            {/* CONTENT */}
+            <div className={styles.cardContent}>
+              <h3>{service.title}</h3>
+
+              <motion.span
+                className={styles.link}
+                whileHover={{ x: 6 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                Preberi več →
+              </motion.span>
             </div>
           </motion.a>
         ))}

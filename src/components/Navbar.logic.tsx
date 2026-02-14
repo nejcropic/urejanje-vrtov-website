@@ -1,4 +1,3 @@
-import { animate } from "motion";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -10,61 +9,26 @@ export const FLAGS = {
 } as const;
 
 export type LangCode = keyof typeof FLAGS;
-/* ---------- HELPERS ---------- */
 
+/* ---------- HELPERS ---------- */
 export function getLangCode(lang: string): LangCode {
   if (lang.startsWith("si")) return "si";
   if (lang.startsWith("en")) return "en";
   return "it";
 }
 
-/* ---------- EFFECTS ---------- */
-
-export function usePageTransition(pathname: string) {
-  useEffect(() => {
-    const main = document.querySelector<HTMLElement>("main");
-    if (!main) return;
-
-    animate(
-      main,
-      {
-        opacity: [0, 1],
-        transform: ["translateY(10px)", "translateY(0px)"],
-      },
-      { duration: 0.3 },
-    );
-  }, [pathname]);
-}
-
+/* ---------- BODY SCROLL LOCK ---------- */
 export function useDisableBodyScroll(active: boolean) {
   useEffect(() => {
-    document.body.style.overflow = active ? "hidden" : "";
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = active ? "hidden" : prev;
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = prev;
     };
   }, [active]);
 }
 
-/* ---------- MOBILE MENU ANIMATION ---------- */
-
-export function useMobileMenuAnimation() {
-  useEffect(() => {
-    const menu = document.querySelector<HTMLElement>("#mobile-menu");
-    if (!menu) return;
-
-    animate(
-      menu,
-      {
-        opacity: [0, 1],
-        transform: ["translateY(20px)", "translateY(0px)"],
-      },
-      { duration: 0.3 },
-    );
-  }, []);
-}
-
 /* ---------- LANGUAGE ---------- */
-
 export function useLanguage() {
   const { i18n } = useTranslation();
   const current = getLangCode(i18n.language);

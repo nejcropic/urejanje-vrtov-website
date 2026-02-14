@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./StudioSection.module.css";
-import slika_levo from "../assets/obrezovanje.jpeg";
-import slika_desno from "../assets/tepih_2.jpeg";
+import slika_levo from "../assets/obrezovanje.webp";
+import slika_desno from "../assets/tepih_2.webp";
 
 export default function StudioSection() {
   const leftRef = useRef<HTMLDivElement>(null);
