@@ -17,9 +17,12 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://nejcropic.github.io/urejanje-vrtov-website/",
+      "https://www.urejanje-vrtov.com",
     ],
   }),
 );
+
+app.get("/health", (req, res) => res.send("ok"));
 
 // Rate limiting (anti-spam)
 const limiter = rateLimit({
