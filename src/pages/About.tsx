@@ -1,10 +1,12 @@
 import PageHero from "../components/PageHero";
 import contactVideo from "../assets/obrezovanje.mp4";
 import { useTranslation } from "react-i18next";
-import ContactSection from "../components/ContactSection";
+import AboutSection from "../components/AboutSection";
+import ProcessTimeline from "../components/ProcessTimeline";
 
 export default function About() {
   const { t } = useTranslation();
+
   return (
     <>
       <PageHero
@@ -12,9 +14,13 @@ export default function About() {
         subtitle={t("page_hero.about")}
         media={contactVideo}
         type="video"
-        breadcrumb={[{ label: "Home", to: "/" }, { label: "Contact" }]}
+        breadcrumb={[
+          { label: t("nav.home"), to: "/" },
+          { label: t("nav.about") },
+        ]}
       />
-      <ContactSection />
+      <AboutSection />
+      <ProcessTimeline variant="full" />
     </>
   );
 }

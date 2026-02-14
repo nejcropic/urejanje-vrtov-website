@@ -1,13 +1,14 @@
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 600px;
   overflow: hidden;
   color: white;
   display: flex;
   align-items: center;
 }
 
-/* VIDEO BACKGROUND */
+/* VIDEO */
 
 .video {
   position: absolute;
@@ -18,7 +19,7 @@
   z-index: 0;
 }
 
-/* COLOR TINT */
+/* TINT */
 
 .tint {
   position: absolute;
@@ -27,13 +28,13 @@
 
   background: linear-gradient(
     135deg,
-    rgba(28, 38, 24, 0.8),
-    rgba(47, 63, 44, 0.65),
-    rgba(15, 20, 12, 0.85)
+    rgba(18, 25, 15, 0.85),
+    rgba(35, 50, 28, 0.75),
+    rgba(10, 15, 8, 0.9)
   );
 }
 
-/* AMBIENT GRAIN */
+/* GRAIN */
 
 .grain {
   position: absolute;
@@ -82,8 +83,6 @@
   opacity: 0.9;
 }
 
-/* CTA */
-
 .cta {
   display: inline-block;
   padding: 16px 44px;
@@ -104,8 +103,6 @@
   transform: translateY(-6px);
   background: rgba(255, 255, 255, 0.2);
 }
-
-/* MOBILE */
 
 @media (max-width: 768px) {
   .content {

@@ -4,11 +4,13 @@ import { Clock, MapPin, Phone, Mail } from "lucide-react";
 import styles from "./ContactSection.module.css";
 import contactImg from "../assets/obrezovanje.webp";
 import emailjs from "@emailjs/browser";
+import { useTranslation } from "react-i18next";
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function ContactSection() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -47,7 +49,7 @@ export default function ContactSection() {
       setForm({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
       console.error(err);
-      alert("Failed to send message.");
+      alert("Failed to send message. Try sending message manually.");
     }
 
     setLoading(false);
@@ -70,20 +72,29 @@ export default function ContactSection() {
             </div>
 
             <div className={styles.infoContent}>
-              <InfoItem icon={<Clock size={18} />} title="We're Open">
-                Monday – Friday 08.00 – 18.00
+              <InfoItem
+                icon={<Clock size={18} />}
+                title={t("contact_form.main.working_time")}
+              >
+                {t("contact_form.sub.working_time")}
               </InfoItem>
 
-              <InfoItem icon={<MapPin size={18} />} title="Office Location">
-                100 S Main St, New York, NY
+              <InfoItem
+                icon={<MapPin size={18} />}
+                title={t("contact_form.main.location")}
+              >
+                {t("contact_form.sub.location")}
               </InfoItem>
 
-              <InfoItem icon={<Phone size={18} />} title="Call Us">
-                +1 123 456 789
+              <InfoItem
+                icon={<Phone size={18} />}
+                title={t("contact_form.main.call")}
+              >
+                {t("contact_form.sub.call")}
               </InfoItem>
 
               <InfoItem icon={<Mail size={18} />} title="Email">
-                contact@gardyn.com
+                {t("contact_form.sub.mail")}
               </InfoItem>
             </div>
           </motion.div>

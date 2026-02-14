@@ -43,7 +43,7 @@ export default function Navbar() {
       { to: "/services", label: t("nav.services.main"), key: "services" },
       { to: "/references", label: t("nav.references"), key: "references" },
       { to: "/about", label: t("nav.about"), key: "about" },
-      { to: "/contact", label: t("nav.kontakt"), key: "contact" },
+      { to: "/contact", label: t("nav.contact"), key: "contact" },
     ],
     [t],
   );
@@ -341,7 +341,7 @@ export default function Navbar() {
                   {t("nav.about")}
                 </Link>
                 <Link to="/contact" onClick={() => setMenuOpen(false)}>
-                  {t("nav.kontakt")}
+                  {t("nav.contact")}
                 </Link>
               </div>
             </motion.aside>

@@ -15,7 +15,7 @@
     },
     "references": "Reference",
     "about": "O nas",
-    "kontakt": "Kontakt"
+    "contact": "Kontakt"
   },
   "hero": {
     "question": "Pošlj povpraševanje",
@@ -24,6 +24,21 @@
     "big_text": "Urejeni, funkcionalni in estetsko dovršeni zunanji prostori – od ideje do brezhibne izvedbe."
   },
   "page_hero": {
-    "about": "Smo podjetje"
+    "about": "Celostno urejanje vrtov in zunanjih površin",
+    "contact": "Kontaktirajte nas in skupaj ustvarimo vaš idealen vrt."
+  },
+  "contact_form": {
+    "main": {
+      "working_time": "Delovni čas",
+      "location": "Lokacija",
+      "call": "Pokliči nas"
+    },
+
+    "sub": {
+      "working_time": "Delovni čas",
+      "location": "Primorska, Italija",
+      "call": "111111111",
+      "mail": "janko.pugelj@urejanje-vrtov.com"
+    }
   }
 }

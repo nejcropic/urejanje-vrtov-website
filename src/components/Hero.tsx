@@ -1,54 +1,31 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef, useState } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Hero.module.css";
-import heroVideo from "../assets/namakalni_video.mp4";
 
 export default function Hero() {
-  const ref = useRef(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const { setMediaReady } = useOutletContext<{
-    setMediaReady: (v: boolean) => void;
-  }>();
-
-  const [videoReady, setVideoReady] = useState(false);
-
-  // Scroll animations
   const { scrollY } = useScroll();
   const yText = useTransform(scrollY, [0, 600], [0, -60]);
   const opacityText = useTransform(scrollY, [0, 400], [1, 0.6]);
 
-  const handleVideoReady = () => {
-    if (!videoReady) {
-      setVideoReady(true);
-      setMediaReady(true);
-    }
-  };
-
   return (
     <section className={styles.hero} ref={ref}>
-      {/* Background Video */}
       <video
-        ref={videoRef}
         className={styles.video}
-        src={heroVideo}
-        preload="auto"
+        src="/hero-video.mp4"
         autoPlay
         muted
         loop
         playsInline
-        poster="/hero-poster.jpg" // VERY IMPORTANT
-        onCanPlayThrough={handleVideoReady}
+        preload="auto"
+        poster="/preload.webp"
       />
 
-      {/* Tint */}
       <div className={styles.tint} />
-
-      {/* Grain */}
       <div className={styles.grain} />
 
-      {/* Content */}
       <motion.div
         className={styles.content}
         style={{ y: yText, opacity: opacityText }}

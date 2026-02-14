@@ -2,6 +2,7 @@ import { createHashRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
+import Contact from "../pages/Contact";
 
 export const router = createHashRouter([
   {
@@ -15,6 +16,10 @@ export const router = createHashRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
     ],
   },

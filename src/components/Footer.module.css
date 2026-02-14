@@ -1,0 +1,92 @@
+.footer {
+  background: var(--primary-color);
+  color: white;
+  padding-top: 120px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 80px;
+}
+
+.brand h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.brand p {
+  opacity: 0.7;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.socials {
+  display: flex;
+  gap: 20px;
+}
+
+.socials a {
+  opacity: 0.7;
+  transition: 0.3s ease;
+}
+
+.socials a:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+/* LINKS */
+.links h4,
+.contact h4 {
+  margin-bottom: 20px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.links a {
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.7;
+  transition: 0.3s ease;
+}
+
+.links a:hover {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+/* CONTACT */
+.info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  opacity: 0.7;
+}
+
+.info svg {
+  flex-shrink: 0;
+}
+
+/* BOTTOM */
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px 20px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}
