@@ -9,9 +9,11 @@ dotenv.config();
 
 const app = express();
 
-// Security middleware
+/* ---------------- SECURITY ---------------- */
+
 app.use(helmet());
 app.use(express.json());
+
 app.use(
   cors({
     origin: [
@@ -21,6 +23,29 @@ app.use(
     ],
   }),
 );
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 10,
+});
+app.use(limiter);
+
+/* ---------------- SMTP TRANSPORTER ---------------- */
+
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+});
+
+/* ---------------- ROUTES ---------------- */
+
 app.get("/", (req, res) => {
   res.send("Backend is running");
 });
@@ -55,28 +80,12 @@ app.post("/api/contact", async (req, res) => {
 
     res.json({ success: true });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error." });
+    console.error("SMTP ERROR:", err);
+    res.status(500).json({ error: "Server error. Try sending mail manually." });
   }
 });
 
-// Rate limiting (anti-spam)
-const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 10, // max 10 requests per minute per IP
-});
-app.use(limiter);
-
-// SMTP transporter
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+/* ---------------- START ---------------- */
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
