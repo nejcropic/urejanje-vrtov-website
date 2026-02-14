@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://nejcropic.github.io/urejanje-vrtov-website/",
+      "https://nejcropic.github.io",
       "https://www.urejanje-vrtov.com",
     ],
   }),
@@ -26,6 +26,27 @@ app.get("/", (req, res) => {
 });
 
 app.get("/health", (req, res) => res.send("ok"));
+
+app.post("/api/contact", async (req, res) => {
+  try {
+    const { name, email, phone, message } = req.body;
+
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: "Missing required fields." });
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      return res.status(400).json({ error: "Invalid email." });
+    }
+
+    console.log("Incoming contact:", req.body);
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error." });
+  }
+});
 
 // Rate limiting (anti-spam)
 const limiter = rateLimit({
@@ -43,43 +64,6 @@ const transporter = nodemailer.createTransport({
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
   },
-});
-
-// Contact endpoint
-app.post("/api/contact", async (req, res) => {
-  try {
-    const { name, email, phone, message } = req.body;
-
-    if (!name || !email || !message) {
-      return res.status(400).json({ error: "Missing required fields." });
-    }
-
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      return res.status(400).json({ error: "Invalid email." });
-    }
-
-    /* await transporter.sendMail({
-      from: `"Website Contact" <${process.env.SMTP_USER}>`,
-      to: process.env.RECEIVER_EMAIL,
-      subject: `New message from ${name}`,
-      html: `
-        <h3>New Contact Message</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "-"}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    });
- */
-    console.log("Incoming contact:", req.body);
-    res.json({ success: true });
-
-    res.json({ success: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error." });
-  }
 });
 
 const PORT = process.env.PORT || 5000;
