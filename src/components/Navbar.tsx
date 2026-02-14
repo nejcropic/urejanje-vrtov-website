@@ -40,7 +40,7 @@ export default function Navbar() {
   const items: NavItem[] = useMemo(
     () => [
       { to: "/", label: t("nav.home"), key: "home" },
-      { to: "/services", label: t("nav.services"), key: "services" },
+      { to: "/services", label: t("nav.services.main"), key: "services" },
       { to: "/references", label: t("nav.references"), key: "references" },
       { to: "/about", label: t("nav.about"), key: "about" },
       { to: "/contact", label: t("nav.kontakt"), key: "contact" },
@@ -292,7 +292,7 @@ export default function Navbar() {
                 </Link>
 
                 <div className={styles.mobileSectionLabel}>
-                  {t("nav.services")}
+                  {t("nav.services.main")}
                 </div>
 
                 <div className={styles.mobileSubLinks}>
@@ -300,31 +300,37 @@ export default function Navbar() {
                     to="/services/urejanje-vrta"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Urejanje vrta
+                    {t("nav.services.option_1")}
                   </Link>
                   <Link
                     to="/services/zemeljska-dela"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Zemeljska dela
+                    {t("nav.services.option_2")}
                   </Link>
                   <Link
                     to="/services/drevesa"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Drevesa in obrezovanje
+                    {t("nav.services.option_3")}
                   </Link>
                   <Link
                     to="/services/namakanje"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Namakalni sistemi
+                    {t("nav.services.option_4")}
                   </Link>
                   <Link
                     to="/services/terase-ograje"
                     onClick={() => setMenuOpen(false)}
                   >
-                    Terase in ograje
+                    {t("nav.services.option_5")}
+                  </Link>
+                  <Link
+                    to="/services/terase-ograje"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {t("nav.services.option_6")}
                   </Link>
                 </div>
 
@@ -400,6 +406,7 @@ function ServicesDropdown({
   setRef: (el: HTMLAnchorElement | null) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div
@@ -426,11 +433,20 @@ function ServicesDropdown({
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22 }}
           >
-            <Link to="/services/urejanje-vrta">Urejanje vrta</Link>
-            <Link to="/services/zemeljska-dela">Zemeljska dela</Link>
-            <Link to="/services/drevesa">Drevesa in obrezovanje</Link>
-            <Link to="/services/namakanje">Namakalni sistemi</Link>
-            <Link to="/services/terase-ograje">Terase in ograje</Link>
+            <Link to="/services/urejanje-vrta">
+              {t("nav.services.option_1")}
+            </Link>
+            <Link to="/services/zemeljska-dela">
+              {t("nav.services.option_2")}
+            </Link>
+            <Link to="/services/drevesa">{t("nav.services.option_3")}</Link>
+            <Link to="/services/namakanje">{t("nav.services.option_4")}</Link>
+            <Link to="/services/terase-ograje">
+              {t("nav.services.option_5")}
+            </Link>
+            <Link to="/services/terase-ograje">
+              {t("nav.services.option_6")}
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

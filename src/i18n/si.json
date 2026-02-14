@@ -4,7 +4,15 @@
   },
   "nav": {
     "home": "Domov",
-    "services": "Storitve",
+    "services": {
+      "main": "Storitve",
+      "option_1": "Terase in zunanje površine",
+      "option_2": "Avtomatizirani namakalni sistemi",
+      "option_3": "Trate in zelene strukture",
+      "option_4": "Krajinska ureditev in zasaditve",
+      "option_5": "Priprava terena in zemeljska dela",
+      "option_6": "Strokovno vzdrževanje in obrezovanje"
+    },
     "references": "Reference",
     "about": "O nas",
     "kontakt": "Kontakt"
@@ -14,5 +22,8 @@
     "big": "Celostna ureditev",
     "big_2": " in okolice",
     "big_text": "Urejeni, funkcionalni in estetsko dovršeni zunanji prostori – od ideje do brezhibne izvedbe."
+  },
+  "page_hero": {
+    "about": "Smo podjetje"
   }
 }
