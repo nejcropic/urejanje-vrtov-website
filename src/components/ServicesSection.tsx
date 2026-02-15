@@ -1,72 +1,55 @@
 import { motion } from "motion/react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./ServicesSection.module.css";
+import { videos, images } from "@/lib/media";
+import { Link } from "react-router-dom";
 
-import terasa from "../assets/terasa.webp";
-import trava from "../assets/trava.mp4";
-import namakalni_sistemi from "../assets/namakalni_video.mp4";
-import travna_rusa from "../assets/travna_rusa.mp4";
-import zasaditev from "../assets/zasaditev.mp4";
-import obrezovanje from "../assets/obrezovanje.mp4";
+const MotionLink = motion(Link);
 
-const services = [
+type Service = {
+  title: string;
+  image: string;
+  video?: string;
+  link: string;
+};
+
+const services: Service[] = [
   {
-    title: "Terase in zunanje površine",
-    media: terasa,
-    type: "image",
+    title: "Zelene površine",
+    image: images.services.terasa,
+    video: videos.services.zasaditev,
+    link: "/services/zelene-povrsine",
   },
   {
-    title: "Avtomatizirani namakalni sistemi",
-    media: namakalni_sistemi,
-    type: "video",
+    title: "Zemeljska dela",
+    image: images.services.terasa,
+    video: videos.services.travna_rusa,
+    link: "/services/zemeljska-dela",
   },
   {
-    title: "Trate in zelene strukture",
-    media: trava,
-    type: "video",
+    title: "Drevesna dela",
+    image: images.services.terasa,
+    video: videos.services.obrezovanje,
+    link: "/services/drevesa",
   },
   {
-    title: "Krajinska ureditev in zasaditve",
-    media: zasaditev,
-    type: "video",
+    title: "Namakalni sistemi",
+    image: images.services.terasa,
+    video: videos.services.namakalni,
+    link: "/services/namakanje",
   },
   {
-    title: "Priprava terena in zemeljska dela",
-    media: travna_rusa,
-    type: "video",
+    title: "Terase in ograje",
+    image: images.services.terasa,
+    link: "/services/terase",
   },
   {
-    title: "Strokovno vzdrževanje in obrezovanje",
-    media: obrezovanje,
-    type: "video",
+    title: "Vzdrževanje",
+    image: images.services.terasa,
+    video: videos.services.trava,
+    link: "/services/vzdrzevanje",
   },
 ];
-
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const item = {
-  hidden: {
-    opacity: 0,
-    y: 60,
-    scale: 0.96,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 1,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
 export default function ServicesSection() {
   return (
     <section className={styles.services}>
@@ -78,77 +61,84 @@ export default function ServicesSection() {
         </p>
       </div>
 
-      <motion.div
-        className={styles.grid}
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-      >
+      <div className={styles.grid}>
         {services.map((service, i) => (
-          <motion.a
-            key={i}
-            href="/storitve"
-            className={styles.card}
-            variants={item}
-            whileHover={{ y: -10 }}
-          >
-            {/* MEDIA WITH IDLE BREATHING EFFECT */}
-            <motion.div
-              className={styles.mediaWrapper}
-              initial={{ scale: 1 }}
-              animate={{ scale: 1.04 }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-              }}
-            >
-              {service.type === "video" ? (
-                <motion.video
-                  src={service.media}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className={styles.media}
-                  whileHover={{ scale: 1.1, y: -10 }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                />
-              ) : (
-                <motion.div
-                  className={styles.media}
-                  style={{ backgroundImage: `url(${service.media})` }}
-                  whileHover={{ scale: 1.1, y: -10 }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                />
-              )}
-            </motion.div>
-
-            {/* GRADIENT OVERLAY */}
-            <motion.div
-              className={styles.overlay}
-              initial={{ opacity: 0.9 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-            />
-
-            {/* CONTENT */}
-            <div className={styles.cardContent}>
-              <h3>{service.title}</h3>
-
-              <motion.span
-                className={styles.link}
-                whileHover={{ x: 6 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              >
-                Preberi več →
-              </motion.span>
-            </div>
-          </motion.a>
+          <ServiceCard key={i} service={service} />
         ))}
-      </motion.div>
+      </div>
     </section>
+  );
+}
+
+/* =========================
+   SERVICE CARD
+========================= */
+
+function ServiceCard({ service }: { service: Service }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLAnchorElement | null>(null);
+
+  useEffect(() => {
+    if (!service.video) return;
+
+    const video = videoRef.current;
+    const el = containerRef.current;
+    if (!video || !el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!video) return;
+          if (entry.isIntersecting) video.play().catch(() => {});
+          else video.pause();
+        });
+      },
+      { threshold: 0.4 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [service.video]);
+
+  return (
+    <MotionLink
+      to={service.link}
+      ref={containerRef}
+      className={styles.card}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className={styles.mediaWrapper}>
+        {service.video ? (
+          <video
+            ref={videoRef}
+            src={service.video}
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="metadata"
+            className={styles.media}
+          />
+        ) : (
+          <img
+            src={service.image}
+            alt={service.title}
+            loading="lazy"
+            decoding="async"
+            className={styles.media}
+          />
+        )}
+      </div>
+
+      <div className={styles.overlay} />
+
+      <div className={styles.cardContent}>
+        <h3>{service.title}</h3>
+        <span className={styles.link}>Preberi več →</span>
+      </div>
+    </MotionLink>
   );
 }

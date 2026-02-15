@@ -1,10 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import path from "path";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  server: {
-    host: true, // listen on 0.0.0.0
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
   },
-  base: "/",
-});
+  server: {
+    host: true,
+  },
+
+  base: mode === "production" ? "/urejanje-vrtov-website/" : "/",
+}));

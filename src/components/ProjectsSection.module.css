@@ -140,3 +140,49 @@
     height: 420px;
   }
 }
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlayContent {
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+/* Desktop hover */
+@media (hover: hover) {
+  .card:hover .overlay {
+    opacity: 1;
+  }
+
+  .card:hover .overlayContent {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile always visible */
+@media (hover: none) {
+  .overlay {
+    opacity: 1;
+  }
+
+  .overlayContent {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

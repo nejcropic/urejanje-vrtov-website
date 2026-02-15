@@ -6,26 +6,28 @@
     "home": "Domov",
     "services": {
       "main": "Storitve",
-      "option_1": "Terase in zunanje površine",
-      "option_2": "Avtomatizirani namakalni sistemi",
-      "option_3": "Trate in zelene strukture",
-      "option_4": "Krajinska ureditev in zasaditve",
-      "option_5": "Priprava terena in zemeljska dela",
-      "option_6": "Strokovno vzdrževanje in obrezovanje"
+      "option_1": "Zelene površine",
+      "option_2": "Zemeljska dela",
+      "option_3": "Drevesna dela",
+      "option_4": "Namakalni sistemi",
+      "option_5": "Terase in ograje",
+      "option_6": "Vzdrževanje"
     },
     "references": "Reference",
     "about": "O nas",
     "contact": "Kontakt"
   },
   "hero": {
-    "question": "Pošlj povpraševanje",
+    "question": "Pošlji povpraševanje",
     "big": "Celostna ureditev",
     "big_2": " in okolice",
     "big_text": "Urejeni, funkcionalni in estetsko dovršeni zunanji prostori – od ideje do brezhibne izvedbe."
   },
   "page_hero": {
-    "about": "Celostno urejanje vrtov in zunanjih površin",
-    "contact": "Kontaktirajte nas in skupaj ustvarimo vaš idealen vrt."
+    "about": "Od idejne zasnove do kakovostne izvedbe – vse na enem mestu.",
+    "contact": "Kontaktirajte nas in skupaj ustvarimo vaš idealen vrt.",
+    "references": "Izbrani projekti urejanja vrtov, teras in zunanjih površin po vsej Sloveniji.",
+    "services": "Od zasaditve do teras, namakalnih sistemov in vzdrževanja – vse na enem mestu."
   },
   "contact_form": {
     "main": {
@@ -33,7 +35,6 @@
       "location": "Lokacija",
       "call": "Pokliči nas"
     },
-
     "sub": {
       "working_time": "Delovni čas",
       "location": "Primorska, Italija",

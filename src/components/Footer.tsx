@@ -49,9 +49,9 @@ export default function Footer() {
           <h4>Navigacija</h4>
           <Link to="/">Domov</Link>
           <Link to="/about">O nas</Link>
-          <Link to="/storitve">Storitve</Link>
-          <Link to="/projekti">Projekti</Link>
-          <Link to="/kontakt">Kontakt</Link>
+          <Link to="/services">Storitve</Link>
+          <Link to="/references">Reference</Link>
+          <Link to="/contact">Kontakt</Link>
         </motion.div>
 
         {/* CONTACT */}
@@ -85,8 +85,10 @@ export default function Footer() {
       <div className={styles.bottom}>
         <span>
           © {new Date().getFullYear()}{" "}
-          <a href="https://www.nejc-ropic.si/">Nejc Ropič.</a> Vse pravice
-          pridržane.
+          <a style={{ color: "white" }} href="https://www.nejc-ropic.si/">
+            Nejc Ropič.
+          </a>{" "}
+          Vse pravice pridržane.
         </span>
       </div>
     </footer>

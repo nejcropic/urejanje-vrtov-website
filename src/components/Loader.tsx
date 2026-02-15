@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import styles from "./Loader.module.css";
 import logo from "../assets/logo.svg";
+import { useEffect } from "react";
 
 type Props = {
   loading: boolean;

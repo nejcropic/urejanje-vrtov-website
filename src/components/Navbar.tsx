@@ -297,7 +297,7 @@ export default function Navbar() {
 
                 <div className={styles.mobileSubLinks}>
                   <Link
-                    to="/services/urejanje-vrta"
+                    to="/services/zelene-povrsine"
                     onClick={() => setMenuOpen(false)}
                   >
                     {t("nav.services.option_1")}
@@ -321,13 +321,13 @@ export default function Navbar() {
                     {t("nav.services.option_4")}
                   </Link>
                   <Link
-                    to="/services/terase-ograje"
+                    to="/services/terase"
                     onClick={() => setMenuOpen(false)}
                   >
                     {t("nav.services.option_5")}
                   </Link>
                   <Link
-                    to="/services/terase-ograje"
+                    to="/services/vzdrzevanje"
                     onClick={() => setMenuOpen(false)}
                   >
                     {t("nav.services.option_6")}
@@ -433,7 +433,7 @@ function ServicesDropdown({
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22 }}
           >
-            <Link to="/services/urejanje-vrta">
+            <Link to="/services/zelene-povrsine">
               {t("nav.services.option_1")}
             </Link>
             <Link to="/services/zemeljska-dela">
@@ -441,12 +441,8 @@ function ServicesDropdown({
             </Link>
             <Link to="/services/drevesa">{t("nav.services.option_3")}</Link>
             <Link to="/services/namakanje">{t("nav.services.option_4")}</Link>
-            <Link to="/services/terase-ograje">
-              {t("nav.services.option_5")}
-            </Link>
-            <Link to="/services/terase-ograje">
-              {t("nav.services.option_6")}
-            </Link>
+            <Link to="/services/terase">{t("nav.services.option_5")}</Link>
+            <Link to="/services/vzdrzevanje">{t("nav.services.option_6")}</Link>
           </motion.div>
         )}
       </AnimatePresence>

@@ -3,6 +3,7 @@ import { motion, useInView, useMotionValue, useSpring } from "motion/react";
 import styles from "./StudioSection.module.css";
 import slika_levo from "../assets/obrezovanje.webp";
 import slika_desno from "../assets/tepih_2.webp";
+import { Link } from "react-router-dom";
 
 export default function StudioSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -11,6 +12,8 @@ export default function StudioSection() {
   const buttonRef = useRef<HTMLAnchorElement>(null);
 
   const isInView = useInView(sectionRef, { once: true, margin: "-120px" });
+
+  const MotionLink = motion(Link);
 
   /* =========================
      1) Typing line (char-by-char)
@@ -66,11 +69,10 @@ export default function StudioSection() {
 
   const fadeUp = useMemo(
     () => ({
-      hidden: { opacity: 0, y: 34, filter: "blur(6px)" },
+      hidden: { opacity: 0, y: 34 },
       show: {
         opacity: 1,
         y: 0,
-        filter: "blur(0px)",
         transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
       },
     }),
@@ -110,7 +112,9 @@ export default function StudioSection() {
       my.set(0);
     };
 
-    el.addEventListener("mousemove", onMove);
+    if (window.matchMedia("(pointer: fine)").matches) {
+      el.addEventListener("mousemove", onMove);
+    }
     el.addEventListener("mouseleave", onLeave);
     return () => {
       el.removeEventListener("mousemove", onMove);
@@ -172,11 +176,9 @@ export default function StudioSection() {
 
   return (
     <section className={styles.studio}>
-      {/* grain overlay */}
       <div className={styles.grain} aria-hidden="true" />
 
       <div className={styles.wrapper} ref={sectionRef}>
-        {/* LEFT IMAGE (scale reveal + depth tilt) */}
         <motion.div
           ref={leftRef}
           className={styles.imageLeft}
@@ -209,7 +211,6 @@ export default function StudioSection() {
           <motion.span className={styles.badge} variants={fadeUp}>
             Krajinska arhitektura & izvedba
           </motion.span>
-
           <motion.h2 variants={fadeUp}>
             Oblikujemo prostore,
             <br />
@@ -226,19 +227,15 @@ export default function StudioSection() {
               />
             </span>
           </motion.h2>
-
           <motion.div className={styles.line} variants={fadeUp} />
-
           <motion.p variants={fadeUp}>
             Vsak projekt začnemo z razumevanjem prostora. S premišljenim
             načrtovanjem, natančno pripravo terena in dovršeno izvedbo
             ustvarjamo zunanje ambiente, kjer se funkcionalnost in estetika
             združita v ravnovesje.
           </motion.p>
-
-          <motion.a
-            ref={buttonRef}
-            href="/o-nas"
+          <MotionLink
+            to="/about"
             className={styles.button}
             variants={fadeUp}
             style={{ x: bxs, y: bys }}
@@ -246,7 +243,8 @@ export default function StudioSection() {
             whileTap={{ scale: 0.98 }}
           >
             Spoznajte naš pristop
-          </motion.a>
+          </MotionLink>
+          ;
         </motion.div>
 
         {/* RIGHT IMAGE (scale reveal + depth tilt) */}

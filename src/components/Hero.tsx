@@ -6,6 +6,7 @@ import styles from "./Hero.module.css";
 export default function Hero() {
   const ref = useRef<HTMLDivElement | null>(null);
 
+  const base = import.meta.env.BASE_URL;
   const { scrollY } = useScroll();
   const yText = useTransform(scrollY, [0, 600], [0, -60]);
   const opacityText = useTransform(scrollY, [0, 400], [1, 0.6]);
@@ -14,13 +15,13 @@ export default function Hero() {
     <section className={styles.hero} ref={ref}>
       <video
         className={styles.video}
-        src="/hero-video.mp4"
+        src={`${base}hero-video.mp4`}
         autoPlay
         muted
         loop
         playsInline
-        preload="auto"
-        poster="/preload.webp"
+        preload="none"
+        poster={`${base}preload.webp`}
       />
 
       <div className={styles.tint} />
@@ -57,7 +58,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.5 }}
           >
-            <Link to="/projekti" className={styles.cta}>
+            <Link to="/references" className={styles.cta}>
               Oglejte si projekte →
             </Link>
           </motion.div>

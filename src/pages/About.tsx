@@ -1,5 +1,5 @@
 import PageHero from "../components/PageHero";
-import contactVideo from "../assets/obrezovanje.mp4";
+import { videos } from "@/lib/media";
 import { useTranslation } from "react-i18next";
 import AboutSection from "../components/AboutSection";
 import ProcessTimeline from "../components/ProcessTimeline";
@@ -12,7 +12,7 @@ export default function About() {
       <PageHero
         title={t("nav.about")}
         subtitle={t("page_hero.about")}
-        media={contactVideo}
+        media={videos.services.obrezovanje}
         type="video"
         breadcrumb={[
           { label: t("nav.home"), to: "/" },

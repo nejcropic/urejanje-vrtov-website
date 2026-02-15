@@ -1,110 +1,47 @@
 <!doctype html>
 <html lang="sl">
   <head>
-    <!-- ============================= -->
-    <!-- BASIC META -->
-    <!-- ============================= -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#2e3d2f" />
 
-    <title>
-      Urejanje vrtov in okolice | Terase, namakalni sistemi, zasaditve
-    </title>
+    <title>Urejanje vrtov in okolice | Terase, namakalni sistemi</title>
 
     <meta
       name="description"
-      content="Celostno urejanje vrtov, teras in zunanjih površin. Zasaditve, travna ruša, namakalni sistemi, obrezovanje, ograjni sistemi in vzdrževanje. Profesionalna izvedba po meri."
+      content="Celostno urejanje vrtov, zasaditve, terase in namakalni sistemi. Profesionalna izvedba po Sloveniji."
     />
 
-    <meta
-      name="keywords"
-      content="urejanje vrtov, zasaditev, travna ruša, umetna trava, namakalni sistemi, terase, obrezovanje, mini bager, ograjni sistemi, višinski posek"
-    />
+    <link rel="canonical" href="https://www.urejanje-vrtov.com/" />
+    <link rel="icon" href="/favicon.ico" />
 
-    <meta name="author" content="Urejanje vrtov" />
-    <meta name="robots" content="index, follow" />
+    <!-- Preload hero poster ONLY -->
+    <link rel="preload" as="image" href="/preload.webp" fetchpriority="high" />
 
-    <link rel="canonical" href="https://www.tvojadomena.si/" />
-
-    <!-- ============================= -->
-    <!-- FAVICON -->
-    <!-- ============================= -->
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="apple-touch-icon" href="/hero-poster.jpg" />
-
-    <!-- ============================= -->
-    <!-- PERFORMANCE OPTIMIZATION -->
-    <!-- ============================= -->
-
-    <!-- Preload hero poster -->
-    <link
-      rel="preload"
-      as="image"
-      href="/preload.webp"
-      type="image/webp"
-      fetchpriority="high"
-    />
-
-    <!-- Preload hero video -->
-    <link rel="preload" as="video" href="/hero-video.mp4" type="video/mp4" />
-
-    <!-- Preconnect (če uporabljaš Google Fonts ali CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- ============================= -->
-    <!-- OPEN GRAPH (FACEBOOK, LINKEDIN) -->
-    <!-- ============================= -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Urejanje vrtov in okolice" />
-    <meta
-      property="og:description"
-      content="Celostno urejanje vrtov, teras in zelenih površin. Profesionalna izvedba po meri."
-    />
-    <meta
-      property="og:image"
-      content="https://www.tvojadomena.si/hero-poster.jpg"
-    />
-    <meta property="og:url" content="https://www.tvojadomena.si/" />
-    <meta property="og:locale" content="sl_SI" />
-
-    <!-- ============================= -->
-    <!-- TWITTER CARD -->
-    <!-- ============================= -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Urejanje vrtov in okolice" />
-    <meta
-      name="twitter:description"
-      content="Zasaditve, terase, travna ruša, namakalni sistemi in več."
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.tvojadomena.si/hero-poster.jpg"
-    />
-
-    <!-- ============================= -->
-    <!-- STRUCTURED DATA (LOCAL BUSINESS SEO BOOST) -->
-    <!-- ============================= -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Urejanje vrtov",
-        "image": "https://www.tvojadomena.si/hero-poster.jpg",
-        "description": "Celostno urejanje vrtov, zasaditve, terase, namakalni sistemi in vzdrževanje.",
-        "areaServed": "Slovenia",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "SI"
-        },
-        "url": "https://www.tvojadomena.si/"
+    <style>
+      :root {
+        --primary-color: #4a6d48; /* #354e33 */
       }
-    </script>
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        background: var(--primary-color);
+      }
+
+      #initial-loader img {
+        width: 120px;
+      }
+    </style>
   </head>
 
   <body>
-    <noscript> Za pravilno delovanje strani omogočite JavaScript. </noscript>
+    <div id="initial-loader">
+      <img src="/logo.svg" alt="Urejanje vrtov logo" />
+    </div>
 
     <div id="root"></div>
 
