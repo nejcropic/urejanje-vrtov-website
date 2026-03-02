@@ -1,20 +1,24 @@
 import { motion } from "motion/react";
 import ServiceDetailLayout from "../../components/ServiceDetailLayout";
 import styles from "../../components/ServiceDetail.module.css";
-import { videos } from "@/lib/media";
+import { videos, images } from "@/lib/media";
+import { ServicesCard } from "../Services";
 
 const features = [
   {
     title: "Redno vzdrževanje",
     text: "Košnja, obrezovanje in nega rastlin za dolgoročno urejen vrt.",
+    image: images.storitve_4.img_1,
   },
   {
     title: "Sezonska oskrba",
     text: "Prilagojena skrb skozi vse letne čase.",
+    image: images.storitve_4.img_2,
   },
   {
     title: "Dolgotrajna kondicija vrta",
     text: "Sistematičen pristop za zdravo rast in urejen videz.",
+    image: images.storitve_4.img_3,
   },
 ];
 
@@ -35,22 +39,7 @@ export default function Vzdrzevanje() {
       </div>
 
       <div className={styles.grid}>
-        {features.map((item, i) => (
-          <motion.div
-            key={i}
-            className={styles.card}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-          >
-            <div className={styles.number}>
-              {String(i + 1).padStart(2, "0")}
-            </div>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </motion.div>
-        ))}
+        <ServicesCard features={features} styles={styles} />
       </div>
     </ServiceDetailLayout>
   );

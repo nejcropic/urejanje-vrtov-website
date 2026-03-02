@@ -22,14 +22,14 @@ export default function Footer() {
 
           <div className={styles.socials}>
             <a
-              href="https://www.instagram.com/"
+              href="vhttps://www.instagram.com/urejanje_vrtov"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Instagram size={20} />
             </a>
             <a
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/urejanje.vrtov"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -48,9 +48,9 @@ export default function Footer() {
         >
           <h4>Navigacija</h4>
           <Link to="/">Domov</Link>
-          <Link to="/about">O nas</Link>
           <Link to="/services">Storitve</Link>
-          <Link to="/references">Reference</Link>
+          <Link to="/about">O nas</Link>
+          <Link to="/gallery">Galerija</Link>
           <Link to="/contact">Kontakt</Link>
         </motion.div>
 
@@ -66,17 +66,19 @@ export default function Footer() {
 
           <div className={styles.info}>
             <Phone size={18} />
-            <span>040 000 000</span>
+            <Link to="tel:040219371">040 219 371</Link>
           </div>
 
           <div className={styles.info}>
             <Mail size={18} />
-            <span>info@urejanje-vrtov.si</span>
+            <Link to="mailto:info.urejanjevrtov@gmail.com">
+              info.urejanjevrtov@gmail.com
+            </Link>
           </div>
 
           <div className={styles.info}>
             <MapPin size={18} />
-            <span>Slovenija</span>
+            <span>Slovenija, Italija, Hrvaška</span>
           </div>
         </motion.div>
       </div>

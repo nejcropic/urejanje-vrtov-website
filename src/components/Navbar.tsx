@@ -9,10 +9,8 @@ import {
 } from "motion/react";
 import styles from "./Navbar.module.css";
 
-import logo from "../assets/logo.svg";
-import tiktok from "../assets/tik-tok.webp";
-import facebook from "../assets/facebook.webp";
-import instagram from "../assets/instagram.webp";
+import { images } from "@/lib/media";
+
 import { Phone } from "lucide-react";
 
 import {
@@ -41,7 +39,7 @@ export default function Navbar() {
     () => [
       { to: "/", label: t("nav.home"), key: "home" },
       { to: "/services", label: t("nav.services.main"), key: "services" },
-      { to: "/references", label: t("nav.references"), key: "references" },
+      { to: "/gallery", label: t("nav.gallery"), key: "gallery" },
       { to: "/about", label: t("nav.about"), key: "about" },
       { to: "/contact", label: t("nav.contact"), key: "contact" },
     ],
@@ -98,8 +96,7 @@ export default function Navbar() {
     const p = location.pathname;
     if (p === "/") return "home";
     if (p.startsWith("/services")) return "services";
-    if (p.startsWith("/references") || p.startsWith("/projekti"))
-      return "references";
+    if (p.startsWith("/gallery") || p.startsWith("/gallery")) return "gallery";
     if (p.startsWith("/about")) return "about";
     if (p.startsWith("/contact")) return "contact";
     return "home";
@@ -143,7 +140,11 @@ export default function Navbar() {
         <nav className={styles.nav}>
           <div className={styles.left}>
             <Link to="/" className={styles.logoLink}>
-              <img src={logo} alt="Logo" className={styles.logo} />
+              <img
+                src={images.navbar.logo}
+                alt="Logo"
+                className={styles.logo}
+              />
             </Link>
           </div>
 
@@ -173,10 +174,10 @@ export default function Navbar() {
             />
 
             <MagneticNavLink
-              to="/references"
+              to="/gallery"
               label={items[2].label}
-              active={activeKey === "references"}
-              setRef={(el) => (linkRefs.current["references"] = el)}
+              active={activeKey === "gallery"}
+              setRef={(el) => (linkRefs.current["gallery"] = el)}
             />
 
             <MagneticNavLink
@@ -196,9 +197,9 @@ export default function Navbar() {
 
           {/* RIGHT SIDE */}
           <div className={styles.right}>
-            <a href="tel:040000000" className={styles.call}>
+            <a href="tel:040219371" className={styles.call}>
               <Phone size={16} />
-              <span className={styles.callText}>040-000-000</span>
+              <span className={styles.callText}>040-219-371</span>
             </a>
 
             <LanguageDropdown />
@@ -210,21 +211,21 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={tiktok} alt="TikTok" />
+                <img src={images.navbar.tiktok} alt="TikTok" />
               </a>
               <a
                 href="https://www.instagram.com/urejanje_vrtov"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={instagram} alt="Instagram" />
+                <img src={images.navbar.instagram} alt="Instagram" />
               </a>
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/urejanje.vrtov"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={facebook} alt="Facebook" />
+                <img src={images.navbar.facebook} alt="Facebook" />
               </a>
             </div>
 
@@ -268,21 +269,21 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={tiktok} alt="TikTok" />
+                  <img src={images.navbar.tiktok} alt="TikTok" />
                 </a>
                 <a
                   href="https://www.instagram.com/urejanje_vrtov"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={instagram} alt="Instagram" />
+                  <img src={images.navbar.instagram} alt="Instagram" />
                 </a>
                 <a
-                  href="https://www.facebook.com"
+                  href="https://www.facebook.com/urejanje.vrtov"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={facebook} alt="Facebook" />
+                  <img src={images.navbar.facebook} alt="Facebook" />
                 </a>
               </div>
 
@@ -334,8 +335,8 @@ export default function Navbar() {
                   </Link>
                 </div>
 
-                <Link to="/references" onClick={() => setMenuOpen(false)}>
-                  {t("nav.references")}
+                <Link to="/gallery" onClick={() => setMenuOpen(false)}>
+                  {t("nav.gallery")}
                 </Link>
                 <Link to="/about" onClick={() => setMenuOpen(false)}>
                   {t("nav.about")}

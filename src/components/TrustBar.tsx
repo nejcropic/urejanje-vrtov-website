@@ -5,7 +5,7 @@ const stats = [
   { number: "120+", label: "Izvedenih projektov" },
   { number: "10+", label: "Let izkušenj" },
   { number: "100%", label: "Zadovoljstvo strank" },
-  { number: "Celotna SI", label: "Delujemo po Sloveniji" },
+  { number: "SI - IT - CRO", label: "Delujemo po več državah" },
 ];
 
 export default function TrustBar() {

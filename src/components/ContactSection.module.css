@@ -1,5 +1,5 @@
 .section {
-  background: #f5f6f2;
+  background: var(--background-color);
   padding: 120px 0;
 }
 
@@ -74,23 +74,6 @@
   gap: 18px;
 }
 
-.form input,
-.form textarea {
-  padding: 18px 20px;
-  border-radius: 12px;
-  border: 1px solid #dcded8;
-  background: white;
-  font-size: 15px;
-  transition: all 0.3s ease;
-}
-
-.form input:focus,
-.form textarea:focus {
-  outline: none;
-  border-color: #3e5235;
-  box-shadow: 0 0 0 3px rgba(62, 82, 53, 0.1);
-}
-
 .form button {
   margin-top: 10px;
   padding: 16px 40px;
@@ -140,21 +123,31 @@
     font-size: 28px;
   }
 }
-
 .field {
   position: relative;
+  width: 100%;
 }
 
 .field input,
 .field textarea {
   width: 100%;
-  padding: 20px 16px;
+  padding: 22px 16px 14px 16px;
   border-radius: 12px;
   border: 1px solid #dcded8;
   background: white;
   font-size: 15px;
+  transition: all 0.25s ease;
+  outline: none;
 }
 
+/* Focus state */
+.field input:focus,
+.field textarea:focus {
+  border-color: #3e5235;
+  box-shadow: 0 0 0 3px rgba(62, 82, 53, 0.08);
+}
+
+/* LABEL */
 .field label {
   position: absolute;
   left: 16px;
@@ -162,11 +155,12 @@
   font-size: 14px;
   color: #888;
   pointer-events: none;
-  transition: 0.2s ease;
+  transition: all 0.2s ease;
   background: white;
   padding: 0 6px;
 }
 
+/* FLOAT */
 .field input:focus + label,
 .field textarea:focus + label,
 .field input:not(:placeholder-shown) + label,
@@ -176,17 +170,22 @@
   color: #3e5235;
 }
 
+/* ERROR */
 .error input,
 .error textarea {
   border-color: #d33;
+}
+
+.error label {
+  color: #d33;
 }
 
 .errorText {
   color: #d33;
   font-size: 12px;
   margin-top: 6px;
+  display: block;
 }
-
 .success {
   margin-top: 12px;
   color: #3e5235;

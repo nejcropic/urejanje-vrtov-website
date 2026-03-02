@@ -1,6 +1,6 @@
 .section {
   padding: 180px 20px;
-  background: #f6f8f5;
+  background: var(--background-color);
   position: relative;
 }
 

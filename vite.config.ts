@@ -13,5 +13,5 @@ export default defineConfig(({ mode }) => ({
     host: true,
   },
 
-  base: mode === "production" ? "/urejanje-vrtov-website/" : "/",
+  base: "/",
 }));

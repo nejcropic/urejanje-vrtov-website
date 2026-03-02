@@ -58,8 +58,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.5 }}
           >
-            <Link to="/references" className={styles.cta}>
-              Oglejte si projekte →
+            <Link to="/gallery" className={styles.cta}>
+              Oglejte si projekte→
             </Link>
           </motion.div>
         </div>

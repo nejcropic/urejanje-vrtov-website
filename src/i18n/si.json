@@ -13,7 +13,7 @@
       "option_5": "Terase in ograje",
       "option_6": "Vzdrževanje"
     },
-    "references": "Reference",
+    "gallery": "Galerija",
     "about": "O nas",
     "contact": "Kontakt"
   },
@@ -26,7 +26,7 @@
   "page_hero": {
     "about": "Od idejne zasnove do kakovostne izvedbe – vse na enem mestu.",
     "contact": "Kontaktirajte nas in skupaj ustvarimo vaš idealen vrt.",
-    "references": "Izbrani projekti urejanja vrtov, teras in zunanjih površin po vsej Sloveniji.",
+    "gallery": "Izbrani projekti urejanja vrtov, teras in zunanjih površin po vsej Sloveniji.",
     "services": "Od zasaditve do teras, namakalnih sistemov in vzdrževanja – vse na enem mestu."
   },
   "contact_form": {
@@ -38,8 +38,22 @@
     "sub": {
       "working_time": "Delovni čas",
       "location": "Primorska, Italija",
-      "call": "111111111",
-      "mail": "janko.pugelj@urejanje-vrtov.com"
+      "call": "040 219 371",
+      "mail": "info.urejanje-vrtov@gmail.com"
     }
+  },
+
+  "gallery": {
+    "title": "Reference",
+    "heading": "Projekti, ki",
+    "highlight": "ustvarjajo razliko",
+    "description": "Vsak projekt je rezultat premišljenega načrtovanja in tehnične natančnosti.",
+    "all": "Vse",
+    "terase": "Terase",
+    "namakalni-sistemi": "Namakalni sistemi",
+    "zelene-povrsine": "Zelene površine",
+    "vzdrzevanje": "Vzdrževanje",
+    "drevesna-dela": "Drevesna dela",
+    "zemeljska-dela": "Zemeljska dela"
   }
 }

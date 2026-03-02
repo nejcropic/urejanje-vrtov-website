@@ -1,16 +1,24 @@
-import { motion } from "motion/react";
 import ServiceDetailLayout from "../../components/ServiceDetailLayout";
 import styles from "../../components/ServiceDetail.module.css";
-import { videos } from "@/lib/media";
+import { videos, images } from "@/lib/media";
+import { ServicesCard } from "../Services";
 
 const features = [
   {
     title: "Obrezovanje",
     text: "Strokovno obrezovanje živih mej, sadnega drevja in okrasnih dreves.",
+    image: images.storitve_1.img_1,
+    imageAlt: "Obrezovanje drevesa",
   },
   {
-    title: "Višinski posek",
+    title: "Višinsko obžagovanje",
     text: "Varno izvajanje višinskih posekov na zahtevnih lokacijah.",
+    image: images.storitve_1.img_2,
+  },
+  {
+    title: "Posek dreves",
+    text: "Varno izvajanje višinskih posekov na zahtevnih lokacijah.",
+    image: images.storitve_1.img_3,
   },
 ];
 
@@ -31,22 +39,7 @@ export default function Drevesa() {
       </div>
 
       <div className={styles.grid}>
-        {features.map((item, i) => (
-          <motion.div
-            key={i}
-            className={styles.card}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-          >
-            <div className={styles.number}>
-              {String(i + 1).padStart(2, "0")}
-            </div>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </motion.div>
-        ))}
+        <ServicesCard features={features} styles={styles} />
       </div>
     </ServiceDetailLayout>
   );

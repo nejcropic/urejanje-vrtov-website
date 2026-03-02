@@ -1,6 +1,6 @@
 .services {
   padding: 160px 20px;
-  background: linear-gradient(to bottom, #f6f7f3, #ecefe8);
+  background: var(--background-color);
 }
 /* HEADER */
 

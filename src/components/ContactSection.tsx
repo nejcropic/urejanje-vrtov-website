@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Clock, MapPin, Phone, Mail } from "lucide-react";
 import styles from "./ContactSection.module.css";
-import contactImg from "../assets/obrezovanje.webp";
+import contactImg from "../assets/studio_1.webp";
 import emailjs from "@emailjs/browser";
 import { useTranslation } from "react-i18next";
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -40,6 +40,7 @@ export default function ContactSection() {
     e.preventDefault();
     if (!validate()) return;
 
+    console.log("Sending form:", form);
     setLoading(true);
 
     try {
@@ -110,7 +111,7 @@ export default function ContactSection() {
 
             <form className={styles.form} onSubmit={handleSubmit}>
               <FloatingInput
-                label="Your Name"
+                label="Ime in priimek"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
@@ -118,7 +119,7 @@ export default function ContactSection() {
               />
 
               <FloatingInput
-                label="Your Email"
+                label="E-mail"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
@@ -126,14 +127,14 @@ export default function ContactSection() {
               />
 
               <FloatingInput
-                label="Your Phone"
+                label="Telefonska številka"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
               />
 
               <FloatingTextarea
-                label="Your Message"
+                label="Sporočilo"
                 name="message"
                 value={form.message}
                 onChange={handleChange}
@@ -168,7 +169,7 @@ function InfoItem({ icon, title, children }: any) {
 function FloatingInput({ label, error, ...props }: any) {
   return (
     <div className={`${styles.field} ${error ? styles.error : ""}`}>
-      <input {...props} />
+      <input placeholder=" " {...props} />
       <label>{label}</label>
       {error && <span className={styles.errorText}>{error}</span>}
     </div>
@@ -178,7 +179,7 @@ function FloatingInput({ label, error, ...props }: any) {
 function FloatingTextarea({ label, error, ...props }: any) {
   return (
     <div className={`${styles.field} ${error ? styles.error : ""}`}>
-      <textarea {...props} rows={5} />
+      <textarea placeholder=" " rows={5} {...props} />
       <label>{label}</label>
       {error && <span className={styles.errorText}>{error}</span>}
     </div>

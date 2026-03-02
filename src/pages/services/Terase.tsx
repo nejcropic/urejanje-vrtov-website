@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import ServiceDetailLayout from "../../components/ServiceDetailLayout";
 import styles from "../../components/ServiceDetail.module.css";
 import { videos } from "@/lib/media";
+import { ServicesCard } from "../Services";
 
 const features = [
   {
@@ -14,10 +15,10 @@ const features = [
   },
 ];
 
-export default function ZemeljskaDela() {
+export default function Terase() {
   return (
     <ServiceDetailLayout
-      title="Zemeljska dela"
+      title="Terase"
       subtitle="Natančna priprava terena kot temelj kakovostne izvedbe."
       media={videos.services.travna_rusa}
       type="video"
@@ -31,22 +32,7 @@ export default function ZemeljskaDela() {
       </div>
 
       <div className={styles.grid}>
-        {features.map((item, i) => (
-          <motion.div
-            key={i}
-            className={styles.card}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-          >
-            <div className={styles.number}>
-              {String(i + 1).padStart(2, "0")}
-            </div>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </motion.div>
-        ))}
+        <ServicesCard features={features} styles={styles} />
       </div>
     </ServiceDetailLayout>
   );

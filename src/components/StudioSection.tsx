@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useSpring } from "motion/react";
 import styles from "./StudioSection.module.css";
-import slika_levo from "../assets/obrezovanje.webp";
-import slika_desno from "../assets/tepih_2.webp";
 import { Link } from "react-router-dom";
+import { images } from "@/lib/media";
 
 export default function StudioSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -192,7 +191,7 @@ export default function StudioSection() {
           }}
         >
           <motion.img
-            src={slika_levo}
+            src={images.studio.studio_1}
             alt="Obrezovanje"
             className={styles.media}
             initial={{ scale: 1.06 }}
@@ -261,7 +260,7 @@ export default function StudioSection() {
           }}
         >
           <motion.img
-            src={slika_desno}
+            src={images.studio.studio_2}
             alt="Travnati tepih"
             className={styles.media}
             initial={{ scale: 1.06 }}

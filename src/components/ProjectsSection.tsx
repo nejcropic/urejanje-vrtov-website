@@ -4,14 +4,14 @@ import { images } from "@/lib/media";
 
 const projects = [
   {
-    image: images.services.terasa,
+    image: images.services.terasa_home,
     title: "Moderna terasa z naravnim kamnom",
     location: "Ljubljana",
     year: "2024",
     service: "Terase in tlakovanje",
   },
   {
-    image: images.reference.ref2,
+    image: images.services.ureditev,
     title: "Celostna ureditev vrta",
     location: "Gorenjska",
     year: "2023",

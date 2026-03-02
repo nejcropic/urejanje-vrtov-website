@@ -1,32 +1,39 @@
 import { motion } from "motion/react";
 import ServiceDetailLayout from "../../components/ServiceDetailLayout";
 import styles from "../../components/ServiceDetail.module.css";
-import { videos } from "@/lib/media";
+import { videos, images } from "@/lib/media";
+import { ServicesCard } from "../Services";
 
 const features = [
   {
     title: "Projektiranje sistema",
     text: "Analiza terena in optimalna razporeditev škropilcev ter kapljičnih linij.",
+    image: images.storitve_2.img_1,
   },
   {
     title: "Pametna avtomatika",
     text: "Programabilni sistemi in senzorji vlage za varčno porabo vode.",
+    image: images.storitve_2.img_2,
   },
   {
     title: "Podzemna napeljava",
     text: "Diskretna izvedba brez motenja estetike vrta.",
+    image: images.storitve_2.img_3,
   },
   {
     title: "Sezonska optimizacija",
     text: "Prilagoditev delovanja sistema glede na vremenske razmere.",
+    image: images.storitve_2.img_4,
   },
   {
     title: "Vzdrževanje sistema",
     text: "Redni pregledi in priprava sistema na sezono.",
+    image: images.storitve_2.img_5,
   },
   {
     title: "Dolgotrajna rešitev",
     text: "Kakovostni materiali za zanesljivo in dolgo življenjsko dobo.",
+    image: images.storitve_2.img_6,
   },
 ];
 
@@ -50,22 +57,7 @@ export default function Namakanje() {
 
       {/* FEATURE CARDS */}
       <div className={styles.grid}>
-        {features.map((item, i) => (
-          <motion.div
-            key={i}
-            className={styles.card}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-          >
-            <div className={styles.number}>
-              {String(i + 1).padStart(2, "0")}
-            </div>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </motion.div>
-        ))}
+        <ServicesCard features={features} styles={styles} />
       </div>
     </ServiceDetailLayout>
   );

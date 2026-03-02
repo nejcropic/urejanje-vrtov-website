@@ -1,6 +1,6 @@
 .studio {
   padding: 130px 20px;
-  background: #eef0ea;
+  background: var(--background-color);
   position: relative;
   overflow: hidden;
 }

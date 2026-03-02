@@ -25,7 +25,7 @@ export default function FinalCTA() {
             Pošlji povpraševanje
           </Link>
 
-          <Link to="/projekti" className={styles.secondary}>
+          <Link to="/gallery" className={styles.secondary}>
             Oglej si projekte
           </Link>
         </div>

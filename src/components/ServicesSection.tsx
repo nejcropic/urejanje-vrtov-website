@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./ServicesSection.module.css";
 import { videos, images } from "@/lib/media";
 import { Link } from "react-router-dom";
@@ -41,6 +41,7 @@ const services: Service[] = [
   {
     title: "Terase in ograje",
     image: images.services.terasa,
+    video: videos.services.terasa,
     link: "/services/terase",
   },
   {

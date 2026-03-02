@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+import { images } from "@/lib/media";
 /* ---------- CONSTANTS ---------- */
-import siFlag from "../assets/si.webp";
-import enFlag from "../assets/en.webp";
-import itFlag from "../assets/it.webp";
 
 export const FLAGS = {
-  si: siFlag,
-  en: enFlag,
-  it: itFlag,
+  si: images.navbar.siFlag,
+  en: images.navbar.enFlag,
+  it: images.navbar.itFlag,
 } as const;
 
 export type LangCode = keyof typeof FLAGS;

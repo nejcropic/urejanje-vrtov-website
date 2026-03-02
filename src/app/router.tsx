@@ -4,7 +4,7 @@ import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
-import References from "../pages/References";
+import Gallery from "../pages/Gallery";
 
 import Services from "../pages/Services";
 
@@ -25,7 +25,7 @@ export const router = createHashRouter([
 
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
-      { path: "references", element: <References /> },
+      { path: "gallery", element: <Gallery /> },
 
       {
         path: "services",

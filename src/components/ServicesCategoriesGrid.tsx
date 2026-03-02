@@ -11,27 +11,27 @@ const categories = [
   },
   {
     title: "Avtomatizirani namakalni sistemi",
-    image: images.reference.ref3,
+    image: images.reference.ref2,
     link: "/services/namakanje",
   },
   {
     title: "Zelene površine in zasaditve",
-    image: images.reference.ref2,
+    image: images.reference.ref3,
     link: "/services/zelene-povrsine",
   },
   {
     title: "Zemeljska dela",
-    image: images.reference.ref2,
+    image: images.reference.ref4,
     link: "/services/zemeljska-dela",
   },
   {
     title: "Drevesna dela",
-    image: images.reference.ref2,
+    image: images.reference.ref5,
     link: "/services/drevesa",
   },
   {
     title: "Vzdrževanje vrtov",
-    image: images.reference.ref2,
+    image: images.reference.ref6,
     link: "/services/vzdrzevanje",
   },
 ];

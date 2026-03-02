@@ -1,6 +1,6 @@
 .section {
   padding: 180px 20px 140px;
-  background: #eef0ea;
+  background: var(--background-color);
 }
 
 .intro {
